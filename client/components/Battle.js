@@ -1,10 +1,18 @@
 import React, {Component} from 'react'
+import Board from './Board.js'
 
 
 export default class Battle extends Component {
   render(){
     return (
-      <h1>Battle Field</h1>
+      <div>
+        <div className='board'>
+          <Board/>
+          <br/>
+          {/* I would like some break that shows the diff */}
+          <Board/>
+        </div>
+      </div>
     )
   }
 }
