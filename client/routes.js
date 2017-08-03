@@ -1,10 +1,10 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {Router} from 'react-router'
+import {BrowserRouter as Router} from 'react-router-dom'
 import {Route, Switch} from 'react-router-dom'
 import PropTypes from 'prop-types'
 import history from './history'
-import {Main, Login, Signup, UserHome} from './components'
+import {Main, Login, Signup, UserHome, Battle} from './components'
 import {me} from './store'
 
 /**
@@ -21,20 +21,23 @@ class Routes extends Component {
     return (
       <Router history={history}>
         <Main>
-          <Switch>
-            {/* Routes placed here are available to all visitors */}
-            <Route path="/login" component={Login} />
-            <Route path="/signup" component={Signup} />
-            {
-              isLoggedIn &&
+          <div className='container'>
+            <Switch>
+              {/* Routes placed here are available to all visitors */}
+              <Route path="/login" component={Login} />
+              <Route path="/signup" component={Signup} />
+              <Route path="/battle" component={Battle} />
+              {
+                isLoggedIn &&
                 <Switch>
                   {/* Routes placed here are only available after logging in */}
-                  <Route path="/home" component={UserHome} />
+                  <Route path="/otherpage" component={UserHome} />
                 </Switch>
-            }
-            {/* Displays our Login component as a fallback */}
-            <Route component={Login} />
-          </Switch>
+              }
+              {/* Displays our Login component as a fallback */}
+              {/* <Route component={Login} /> */}
+            </Switch>
+          </div>
         </Main>
       </Router>
     )

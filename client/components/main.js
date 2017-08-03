@@ -3,6 +3,8 @@ import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {withRouter, Link} from 'react-router-dom'
 import {logout} from '../store'
+import {LinkContainer} from 'react-router-bootstrap'
+import { Navbar , Nav, NavItem, NavDropdown, MenuItem} from 'react-bootstrap'
 
 /**
  * COMPONENT
@@ -12,29 +14,52 @@ import {logout} from '../store'
  */
 const Main = (props) => {
   const {children, handleClick, isLoggedIn} = props
-
+  ///Nav Component fo now
   return (
     <div>
-      <h1>BOILERMAKER</h1>
-      <nav>
+
+      <Navbar>
+        <Navbar.Header>
+          <Navbar.Brand>
+            <Link to="/">battleoftheships</Link>
+          </Navbar.Brand>
+        </Navbar.Header>
         {
           isLoggedIn
             ? <div>
               {/* The navbar will show these links after you log in */}
-              <Link to="/home">Home</Link>
-              <a href="#" onClick={handleClick}>Logout</a>
+              <Nav>
+                <LinkContainer to="/otherpage">
+                  <NavItem eventKey={1}>Otherpage</NavItem>
+                </LinkContainer>
+                <LinkContainer to="/#">
+                  <NavItem onClick={handleClick} eventKey={2}>Logout</NavItem>
+                </LinkContainer>
+                <LinkContainer to="/#">
+                  <NavItem eventKey={3}>Battle</NavItem>
+                </LinkContainer>
+              </Nav>
             </div>
             : <div>
               {/* The navbar will show these links before you log in */}
-              <Link to="/login">Login</Link>
-              <Link to="/signup">Sign Up</Link>
+              <Nav>
+                <LinkContainer to="/login">
+                  <NavItem eventKey={1}>Login</NavItem>
+                </LinkContainer>
+                <LinkContainer to="/signup">
+                  <NavItem eventKey={2}>Sign Up</NavItem>
+                </LinkContainer>
+                <LinkContainer to="/battle">
+                  <NavItem eventKey={3}>Battle</NavItem>
+                </LinkContainer>
+              </Nav>
             </div>
         }
-      </nav>
+      </Navbar>
       <hr />
       {children}
     </div>
-  )
+)
 }
 
 /**
