@@ -72,7 +72,7 @@ sidebar (after pressing play && finding another player)
   (start) -> has ships
   (ships) -> size, and add coordinates (set coord, once all set)
   (begin) -> is active once all coords are set
-  (score) player 1 && 2 shots, hits
+  (score) player 1 && 2 misses, hits
   (turn) player who should be up
   if(logged in -> your player name) -> if not logged in your random number
 
@@ -83,3 +83,12 @@ board (after pressing play && finding another player)
 
   board -> sockets
     board click box as shot, shows up on other component
+
+
+
+#	Class of ship	Size
+1	Carrier	5
+2	Battleship	4
+3	Cruiser	3
+4	Submarine	3
+5	Destroyer	2

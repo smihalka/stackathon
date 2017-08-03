@@ -1,13 +1,13 @@
 import React  from 'react'
 import {Table} from 'react-bootstrap'
+import {cols, rows} from './Coordinates'
 
 export default function Board (props) {
-  const rows = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I' ]
-  const cols = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+
   return (
     <Table>
       <tbody>
-        <tr><th>BS</th>
+        <tr><th>X/Y</th>
           {cols.map((col)=>{
             return (<th key={`${col}`}>{col}</th>)
           })}
@@ -16,7 +16,7 @@ export default function Board (props) {
           return (
             <tr key={row}><th>{row}</th>
               {cols.map((col)=>{
-                return (<td key={`${row}${col}`}>+</td>)
+                return (<td key={`${row}${col}`}></td>)
               })}
 
             </tr>

@@ -1,3 +1,32 @@
+*{
+padding:auto;
+margin:auto;
+}
+
+html, body {
+   background-color: rgb(241, 241, 241);
+   padding: 0;
+   margin: 0;
+}
+
+.container{
+  width:80%;
+}
+
+.board {
+  width:70%;
+  float:left;
+}
+.battlebar {
+  width:30%;
+  float:left;
+}
+#battlebar {
+  width:80%;
+  float:right;
+}
+
+
 body {
   font-family: sans-serif;
 

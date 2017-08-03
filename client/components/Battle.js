@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import Board from './Board.js'
-
+import BattleBar from './BattleBar.js'
 
 export default class Battle extends Component {
   render(){
@@ -11,6 +11,9 @@ export default class Battle extends Component {
           <br/>
           {/* I would like some break that shows the diff */}
           <Board/>
+        </div>
+        <div className='battlebar'>
+          <BattleBar/>
         </div>
       </div>
     )
