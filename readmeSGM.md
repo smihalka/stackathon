@@ -53,6 +53,8 @@
  React Animate
 + https://www.npmjs.com/package/react-animate
 
+whiteboard... look over ....
+early
 
 battleoftheships
 
