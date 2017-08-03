@@ -23,5 +23,4 @@ export const coordinates = (align, size) =>{
   return bowXY
 }
 
-
 export const align = ['vertical', 'horizontal']

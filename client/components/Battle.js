@@ -7,10 +7,10 @@ export default class Battle extends Component {
     return (
       <div>
         <div className='board'>
-          <Board/>
+          <Board title='Target Grid'/>
           <br/>
           {/* I would like some break that shows the diff */}
-          <Board/>
+          <Board  title='Battle Grid'/>
         </div>
         <div className='battlebar'>
           <BattleBar/>

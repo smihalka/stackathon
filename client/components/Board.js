@@ -6,6 +6,9 @@ export default function Board (props) {
 
   return (
     <Table>
+      <thead>
+        <tr colSpan='11'><th colSpan='11'>{props.title}</th></tr>
+      </thead>
       <tbody>
         <tr><th>X/Y</th>
           {cols.map((col)=>{
