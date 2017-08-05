@@ -84,7 +84,8 @@ board (after pressing play && finding another player)
   board -> sockets
     board click box as shot, shows up on other component
 
-
+react-motion
+react-animate
 
 #	Class of ship	Size
 1	Carrier	5
@@ -92,3 +93,62 @@ board (after pressing play && finding another player)
 3	Cruiser	3
 4	Submarine	3
 5	Destroyer	2
+
+
+user hasmany players
+
+player belongsTo user
+player belongsto game game ID
+
+game has many players
+
+game
+id turn
+
+ships
+  type, size
+
+shots
+
+
+type: User
+
+type: Player
+
+type: Game
+associations:
+  hasMany Players
+  hasOne Player as turn
+rows:
+  - id
+  * turn
+
+type: Ship
+associations:
+rows:
+  - id
+  - type: STRING
+  - size: INTEGER
+
+type: GameShip
+associations:
+  GameShip belongsTo Game
+  GameShip belongsTo Ship
+  GameShip belongsTo Player
+rows:
+  - id
+  * gameId
+  * shipId
+  * playerId
+  - orientation: STRING
+  - startCoordinate: STRING
+
+type: Shot
+associations:
+  Shot belongsTo Game
+  Shot belongsTo Player
+rows:
+  - id
+  * gameId
+  * playerId
+  - coordinates: STRING

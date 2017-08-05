@@ -1,52 +1,78 @@
-import React  from 'react'
+import React,{ Component }  from 'react'
 import {Table} from 'react-bootstrap'
-import {coordinates, align} from './Coordinates'
+import {coordinates, align, cols, rows} from './Coordinates'
+import {connect} from 'react-redux'
+import {fetchShips} from '../store'
 
-export default function Ships (props) {
-  const ships = [
-    {ship: 'Carrier', size: 5},
-    {ship: 'Battleship', size: 4},
-    {ship: 'Cruiser', size: 3},
-    {ship: 'Submarine', size: 3},
-    {ship: 'Destroyer', size: 2}
-  ]
+function Ships (props){
 
-  return (
-    <Table>
-      <thead>
-        <tr colSpan='4'>
-          <th colSpan='4'> Ship Placement</th>
-        </tr>
-        <tr>
-          <th>Class</th>
-          <th>Size</th>
-          <th>Align</th>{/* hoping to have ships here not numbers*/}
-          <th>Coord</th>{/* dislay the coordinates that the ship is on drop down for now*/}
-        </tr>
-      </thead>
-      <tbody>
-        {ships.map((ship,key)=>{
-          return (
-            <tr key={key}>
-              <td>{ship.ship}</td>
-              <td>{ship.size}</td>
-              <td>
-                <select>{align.map((a)=>{
-                  return <option key={a}>{a}</option>
-                })}
-                </select>
-              </td>
-              <td>
-                <select>
-                  {coordinates('vertical',ship.size).map((xy)=>{
-                    return <option key={xy}>{xy}</option>
+  if(props.ships){
+    return (
+      <Table>
+        <thead>
+          <tr colSpan='4'>
+            <th colSpan='4'> Ship Placement</th>
+          </tr>
+          <tr>
+            <th>Class</th>
+            <th>Size</th>
+            <th>Align</th>{/* hoping to have ships here not numbers*/}
+            <th>Coord</th>{/* dislay the coordinates that the ship is on drop down for now*/}
+          </tr>
+        </thead>
+        <tbody>
+          {props.ships.map((ship)=>{
+            return (
+              <tr key={ship.id}>
+                <td>{ship.name}</td>
+                <td>{ship.size}</td>
+                <td>
+                  <select>{align.map((a)=>{
+                    return <option key={a}>{a}</option>
                   })}
-                </select>
+                  </select>
+                </td>
+                <td>
+                  <form>
+                    <select data-size={ship.size} data-name={ship.name} data-direction='vertical' onChange={props.handleOnChange}>
+                      {coordinates('vertical',ship.size).map((xy)=>{
+                        return <option value={xy} key={xy}>{xy}</option>
+                      })}
+                    </select>
+                  </form>
+                </td>
+              </tr>
+            )
+          })}
+        </tbody>
+      </Table>
+    )
+  }else{
+    return (<h1>Loading.....</h1>)
+  }
 
-              </td>
-            </tr>
-          )
-        })}
-      </tbody>
-    </Table>)
 }
+
+const mapStateToProps = null
+
+const mapDispatchToProps= (dispatch) => {
+  return {
+    getShipData (){
+      dispatch(fetchShips())
+    },
+    handleOnChange (event){
+      const xy = event.target.value
+      const name = event.target.dataset.name
+      const size = +event.target.dataset.size
+      const direction = event.target.dataset.direction
+      //console.log(xy,name,size,direction,rows.indexOf(xy[0]))
+      const num = rows.indexOf(xy[0])
+      //    dispatch(setShip(rows.slice(num,size+num).map((x)=>{return `${x}${xy[1]}`})))
+
+    }
+  }
+}
+
+const ShipsContainer = connect(mapStateToProps, mapDispatchToProps)(Ships)
+
+export default ShipsContainer

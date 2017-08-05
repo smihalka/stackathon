@@ -26,12 +26,13 @@ class Routes extends Component {
               {/* Routes placed here are available to all visitors */}
               <Route path="/login" component={Login} />
               <Route path="/signup" component={Signup} />
-              <Route path="/battle" component={Battle} />
+              
               {
                 isLoggedIn &&
                 <Switch>
                   {/* Routes placed here are only available after logging in */}
                   <Route path="/otherpage" component={UserHome} />
+                  <Route path="/battle" component={Battle} />
                 </Switch>
               }
               {/* Displays our Login component as a fallback */}

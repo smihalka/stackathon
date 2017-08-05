@@ -26,6 +26,29 @@ html, body {
   float:right;
 }
 
+.hit {
+  border-color: red;
+  background-color: red;
+
+}
+
+.miss {
+  border-color: white;
+  background-color: white;
+}
+
+
+.fired {
+
+  border: 1px dashed red;
+  background-color: green;
+
+}
+
+.ship {
+  border-color: black;
+  background-color: green;
+}
 
 body {
   font-family: sans-serif;

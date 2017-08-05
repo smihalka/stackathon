@@ -1,21 +1,117 @@
 import React, {Component} from 'react'
 import Board from './Board.js'
 import BattleBar from './BattleBar.js'
+import {connect} from 'react-redux'
+import {fetchShips, fetchShots, fetchGameShips, me, fetchPlayer, fetchGame, fetchGamePlayers} from '../store'
+import socket from '../socket'
+import { shipCoordinates } from './Coordinates'
 
-export default class Battle extends Component {
+
+class Battle extends Component {
+  componentDidMount(){
+    this.props.fetchBattleData()
+    socket.on('message', (message)=> {
+      this.props.fetchBattleData()
+      console.log('action', message)
+    })
+
+  }
+
+
   render(){
+    const gameShipsLocalPlayer = shipCoordinates(this.props.gameships,this.props.ships,this.props.localplayer)
+
+    const gameShipsOpponentPlayer = shipCoordinates(this.props.gameships,this.props.ships,this.props.opponentplayer)
+
     return (
       <div>
+        <h1>{this.props.user.email}</h1>
+        <h4>{this.props.localplayer.id}</h4>
         <div className='board'>
-          <Board title='Target Grid'/>
+          <Board
+            title='Target Grid'
+            board='tg'
+            user={this.props.user}
+            game={this.props.game}
+            localplayer={this.props.localplayer}
+            opponentplayer={this.props.opponentplayer}
+            gameships={this.props.gameships}
+            shots={this.props.shots}
+            gameplayers={this.props.gameplayers}
+            ships={this.props.ships}
+            gameShipsOpponentPlayer={gameShipsOpponentPlayer}
+            gameShipsLocalPlayer={gameShipsLocalPlayer}
+          />
           <br/>
-          {/* I would like some break that shows the diff */}
-          <Board  title='Battle Grid'/>
+          <Board
+            title='Battle Grid'
+            board='bg'
+            user={this.props.user}
+            game={this.props.game}
+            localplayer={this.props.localplayer}
+            opponentplayer={this.props.opponentplayer}
+            gameships={this.props.gameships}
+            shots={this.props.shots}
+            gameplayers={this.props.gameplayers}
+            ships={this.props.ships}
+            gameShipsOpponentPlayer={gameShipsOpponentPlayer}
+            gameShipsLocalPlayer={gameShipsLocalPlayer}
+          />
         </div>
         <div className='battlebar'>
-          <BattleBar/>
+          <BattleBar
+            gameships={this.props.gameships}
+            shots={this.props.shots}
+            gameplayers={this.props.gameplayers}
+            ships={this.props.ships}
+            gameShipsOpponentPlayer={gameShipsOpponentPlayer}
+            gameShipsLocalPlayer={gameShipsLocalPlayer}
+            localplayer={this.props.localplayer}
+            opponentplayer={this.props.opponentplayer}
+          />
         </div>
       </div>
     )
   }
 }
+
+const mapStateToProps = (state) => {
+
+  // socket.emit('state', state)
+  // socket.on('state', function(state) {
+  //
+//  })
+
+  const opponent = state.gameplayers.find((player)=>{
+    return player.id !== state.localplayer.id})
+  return {
+    user: state.user,
+    game: state.game,
+    localplayer: state.localplayer,
+    gameships: state.gameships,
+    shots: state.shots,
+    gameplayers: state.gameplayers,
+    opponentplayer: opponent,
+    ships: state.ships
+  }
+}
+
+const mapDispatchToProps = dispatch => ({
+  fetchBattleData: () => {
+    dispatch(me())
+      .then((res)=>{
+        dispatch(fetchPlayer(res.user.id))
+          .then((res)=>{
+            dispatch(fetchGame(res.player.gameId))
+              .then(()=> {
+                dispatch(fetchGamePlayers(res.player.gameId))
+                dispatch(fetchGameShips(res.player.gameId))
+                dispatch(fetchShots(res.player.gameId))
+              })
+          })
+      })
+    dispatch(fetchShips())
+  }
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Battle)

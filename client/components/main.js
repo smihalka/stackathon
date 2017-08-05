@@ -4,7 +4,7 @@ import {connect} from 'react-redux'
 import {withRouter, Link} from 'react-router-dom'
 import {logout} from '../store'
 import {LinkContainer} from 'react-router-bootstrap'
-import { Navbar , Nav, NavItem, NavDropdown, MenuItem} from 'react-bootstrap'
+import { Navbar , Nav, NavItem } from 'react-bootstrap'
 
 /**
  * COMPONENT
@@ -35,7 +35,7 @@ const Main = (props) => {
                 <LinkContainer to="/#">
                   <NavItem onClick={handleClick} eventKey={2}>Logout</NavItem>
                 </LinkContainer>
-                <LinkContainer to="/#">
+                <LinkContainer to="/battle">
                   <NavItem eventKey={3}>Battle</NavItem>
                 </LinkContainer>
               </Nav>
@@ -49,9 +49,7 @@ const Main = (props) => {
                 <LinkContainer to="/signup">
                   <NavItem eventKey={2}>Sign Up</NavItem>
                 </LinkContainer>
-                <LinkContainer to="/battle">
-                  <NavItem eventKey={3}>Battle</NavItem>
-                </LinkContainer>
+
               </Nav>
             </div>
         }
