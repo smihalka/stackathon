@@ -31,11 +31,13 @@ const _ships = [
 const _players = [
   {
     "gameId" : 1,
-    "userId" : 1
+    "userId" : 1,
+    'status' : 0
   },
   {
     "gameId" : 1,
-    "userId" : 2
+    "userId" : 2,
+    'status' : 0
   }
 ]
 
@@ -59,7 +61,9 @@ const _gameships = [
 const _games = [
   {
     "id" : 1,
-    "turnId" : 2
+    "turnId" : 2,
+    'status' : 0,
+    'winner' : 0
   }
 ]
 
@@ -81,10 +85,10 @@ db.sync({force: true})
   .then(games => console.log(`Seeded ${games.length} games OK!`))
   .then(() => seed(_players, 'player'))
   .then(players => console.log(`Seeded ${players.length} players OK!`))
-  .then(() => seed(_gameships, 'gameship'))
-  .then(gameships => console.log(`Seeded ${gameships.length} gameships OK!`))
-  .then(() => seed(_shots, 'shot'))
-  .then(shots => console.log(`Seeded ${shots.length} reviews OK!`))
+  // .then(() => seed(_gameships, 'gameship'))
+  // .then(gameships => console.log(`Seeded ${gameships.length} gameships OK!`))
+  // .then(() => seed(_shots, 'shot'))
+  // .then(shots => console.log(`Seeded ${shots.length} reviews OK!`))
   .then(() => {
     console.log('Seeding complete OK!')
   })

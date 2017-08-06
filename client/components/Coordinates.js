@@ -25,6 +25,18 @@ export const coordinates = (align, size) =>{
 
 export const align = ['vertical', 'horizontal']
 
+export const singleShipCoordinates = (orientation, xy , size)=>{
+  let coordinates
+  let num = rows.indexOf(xy[0])
+  if(orientation === 'vertical'){
+    coordinates = rows.slice(num,size+num).map((x)=>{return `${x}${xy[1]}`})
+  }else{
+    num = cols.indexOf(+xy[1])
+    coordinates = cols.slice(num,size+num).map((y)=>{return `${xy[0]}${y}`})
+  }
+  return coordinates
+}
+
 export const shipCoordinates = (gameships, ships, player)=>{
   const gameShipsLocalPlayer = gameships.filter((gameship)=>{
     if(gameship.playerId === player.id){
@@ -35,38 +47,9 @@ export const shipCoordinates = (gameships, ships, player)=>{
       })
       gameship.size = shipsObject.size
       gameship.name = shipsObject.name
-      let xy = gameship.coordinate
-      let num = rows.indexOf(xy[0])
-      if(gameship.orientation === 'vertical'){
-        gameship.coordinates = rows.slice(num,gameship.size+num).map((x)=>{return `${x}${xy[1]}`})
-      }else{
-        num = cols.indexOf(+xy[1])
-        gameship.coordinates = cols.slice(num,gameship.size+num).map((y)=>{return `${xy[0]}${y}`})
-      }
+      gameship.coordinates = singleShipCoordinates(gameship.orientation,gameship.coordinate,shipsObject.size)
       return gameship
     }
   })
   return gameShipsLocalPlayer
 }
-
-
-
-
-
-
-
-// const gameships = props.gameships.filter((gameship)=>{
-//   if(gameship.playerId === props.localplayer.id){
-//     const ships = props.ships.find((ship)=>{
-//       if(ship.id === gameship.shipId){
-//         return ship
-//       }
-//     })
-//     gameship.size = ships.size
-//     gameship.coordinates = coordinates(gameship.orientation,ships.size)
-//     return gameship
-//   }
-// })
-// }
-// const num = rows.indexOf(xy[0])
-//    dispatch(setShip(rows.slice(num,size+num).map((x)=>{return `${x}${xy[1]}`})))

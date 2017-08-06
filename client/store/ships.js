@@ -9,12 +9,16 @@ import axios from 'axios'
 
 const GET_SHIPS = 'GET_SHIPS'
 
+
 /* ------------   ACTION CREATORS     ------------------ */
 
 const getShips = (ships) => {
   const action = { type: GET_SHIPS, ships}
   return action
 }
+
+
+
 
 /* ------------       THUNK CREATORS     ------------------ */
 

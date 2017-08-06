@@ -1,25 +1,52 @@
 import React  from 'react'
 import {Button, Glyphicon} from 'react-bootstrap'
 
-export const setBoard = ()=>{
-  return (<div>
+export const setBoard = (ships,player)=>{
 
-    <Button
-    bsSize='large'>
-      Set Board
-    </Button>
-  </div>
-    )
+  if(ships.length === 5 && player.status === 0 ){
+    return (<div>
+      <Button
+        type='submit'
+        bsSize='large'
+      >
+        Set Board
+      </Button>
+    </div>
+      )
+  }else{
+    return (<div>
+      <Button
+        disabled
+      bsSize='large'>
+        Set Board
+      </Button>
+    </div>
+      )
+  }
 
 }
 
-export const playBoard = ()=>{
-  return (
-    <div>
-      <Button
-      bsSize='large'>
-        PLAY
-      </Button>
-    </div>
-  )
+export const playBoard = (opponent, local, game)=>{
+  if(local.status === 1 && opponent.status === 1 && game.status !== 1){
+    return (
+      <div>
+        <Button
+          type='submit'
+          bsSize='large'
+        >
+          PLAY
+        </Button>
+      </div>
+    )
+  }else{
+    return (
+      <div>
+        <Button disabled
+        bsSize='large'>
+          PLAY
+        </Button>
+      </div>
+    )
+  }
+
 }

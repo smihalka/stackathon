@@ -19,59 +19,65 @@ class Battle extends Component {
 
 
   render(){
-    const gameShipsLocalPlayer = shipCoordinates(this.props.gameships,this.props.ships,this.props.localplayer)
+    if(this.props.gameships){
+      const gameShipsLocalPlayer = shipCoordinates(this.props.gameships,this.props.ships,this.props.localplayer)
 
-    const gameShipsOpponentPlayer = shipCoordinates(this.props.gameships,this.props.ships,this.props.opponentplayer)
+      const gameShipsOpponentPlayer = shipCoordinates(this.props.gameships,this.props.ships,this.props.opponentplayer)
 
-    return (
-      <div>
-        <h1>{this.props.user.email}</h1>
-        <h4>{this.props.localplayer.id}</h4>
-        <div className='board'>
-          <Board
-            title='Target Grid'
-            board='tg'
-            user={this.props.user}
-            game={this.props.game}
-            localplayer={this.props.localplayer}
-            opponentplayer={this.props.opponentplayer}
-            gameships={this.props.gameships}
-            shots={this.props.shots}
-            gameplayers={this.props.gameplayers}
-            ships={this.props.ships}
-            gameShipsOpponentPlayer={gameShipsOpponentPlayer}
-            gameShipsLocalPlayer={gameShipsLocalPlayer}
-          />
-          <br/>
-          <Board
-            title='Battle Grid'
-            board='bg'
-            user={this.props.user}
-            game={this.props.game}
-            localplayer={this.props.localplayer}
-            opponentplayer={this.props.opponentplayer}
-            gameships={this.props.gameships}
-            shots={this.props.shots}
-            gameplayers={this.props.gameplayers}
-            ships={this.props.ships}
-            gameShipsOpponentPlayer={gameShipsOpponentPlayer}
-            gameShipsLocalPlayer={gameShipsLocalPlayer}
-          />
+      return (
+        <div>
+          <h1>{this.props.user.email}</h1>
+          <h4>{this.props.localplayer.id}</h4>
+          <div className='board'>
+            <Board
+              title='Target Grid'
+              board='tg'
+              user={this.props.user}
+              game={this.props.game}
+              localplayer={this.props.localplayer}
+              opponentplayer={this.props.opponentplayer}
+              gameships={this.props.gameships}
+              shots={this.props.shots}
+              gameplayers={this.props.gameplayers}
+              ships={this.props.ships}
+              gameShipsOpponentPlayer={gameShipsOpponentPlayer}
+              gameShipsLocalPlayer={gameShipsLocalPlayer}
+            />
+            <br/>
+            <Board
+              title='Battle Grid'
+              board='bg'
+              user={this.props.user}
+              game={this.props.game}
+              localplayer={this.props.localplayer}
+              opponentplayer={this.props.opponentplayer}
+              gameships={this.props.gameships}
+              shots={this.props.shots}
+              gameplayers={this.props.gameplayers}
+              ships={this.props.ships}
+              gameShipsOpponentPlayer={gameShipsOpponentPlayer}
+              gameShipsLocalPlayer={gameShipsLocalPlayer}
+            />
+          </div>
+          <div className='battlebar'>
+            <BattleBar
+              game={this.props.game}
+              gameships={this.props.gameships}
+              shots={this.props.shots}
+              gameplayers={this.props.gameplayers}
+              ships={this.props.ships}
+              gameShipsOpponentPlayer={gameShipsOpponentPlayer}
+              gameShipsLocalPlayer={gameShipsLocalPlayer}
+              localplayer={this.props.localplayer}
+              opponentplayer={this.props.opponentplayer}
+            />
+          </div>
         </div>
-        <div className='battlebar'>
-          <BattleBar
-            gameships={this.props.gameships}
-            shots={this.props.shots}
-            gameplayers={this.props.gameplayers}
-            ships={this.props.ships}
-            gameShipsOpponentPlayer={gameShipsOpponentPlayer}
-            gameShipsLocalPlayer={gameShipsLocalPlayer}
-            localplayer={this.props.localplayer}
-            opponentplayer={this.props.opponentplayer}
-          />
-        </div>
-      </div>
-    )
+      )
+    }else{
+      return (<h2>Loading.....</h2>)
+    }
+
   }
 }
 

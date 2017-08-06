@@ -1,12 +1,16 @@
-import React,{ Component }  from 'react'
+import React from 'react'
 import {Table} from 'react-bootstrap'
-import {coordinates, align, cols, rows} from './Coordinates'
+import {coordinates, align } from './Coordinates'
 import {connect} from 'react-redux'
-import {fetchShips} from '../store'
+import {addChangeShip} from '../store'
 
 function Ships (props){
 
-  if(props.ships){
+  if(props.playerShips){
+    let status = false
+    if(props.player.status === 1){
+      status = true
+    }
     return (
       <Table>
         <thead>
@@ -22,20 +26,48 @@ function Ships (props){
         </thead>
         <tbody>
           {props.ships.map((ship)=>{
+            const playerShip = props.playerShips.find((localShip)=>{
+              return localShip.shipId === ship.id
+            })
+            ///the amount of jumping I have to do makes me want to figure if promise.all can help me
+            let setCoordinates = 'A1'
+            let setOrientation = 'vertical'
+            if(playerShip !== undefined){
+              setCoordinates = playerShip.coordinate
+              setOrientation = playerShip.orientation
+            }
             return (
               <tr key={ship.id}>
                 <td>{ship.name}</td>
                 <td>{ship.size}</td>
                 <td>
-                  <select>{align.map((a)=>{
-                    return <option key={a}>{a}</option>
-                  })}
-                  </select>
+                  <form>
+                    <select disabled={status}
+                      data-size={ship.size}
+                      data-shipid={ship.id}
+                      data-name={ship.name}
+                      data-direction={setOrientation}
+                      onChange={props.handleOnChangeOrient}
+                      data-coordinates={setCoordinates}
+                      value={setOrientation}
+                    >
+                      {align.map((a)=>{
+                        return <option value={a} key={a}>{a}</option>
+                      })}
+                    </select>
+                  </form>
                 </td>
                 <td>
-                  <form>
-                    <select data-size={ship.size} data-name={ship.name} data-direction='vertical' onChange={props.handleOnChange}>
-                      {coordinates('vertical',ship.size).map((xy)=>{
+                  <form >
+                    <select  disabled={status}
+                      data-size={ship.size}
+                      data-shipid={ship.id}
+                      data-name={ship.name}
+                      data-direction={setOrientation}
+                      onChange={props.handleOnChange}
+                      value={setCoordinates}
+                    >
+                      {coordinates(setOrientation,ship.size).map((xy)=>{
                         return <option value={xy} key={xy}>{xy}</option>
                       })}
                     </select>
@@ -50,25 +82,30 @@ function Ships (props){
   }else{
     return (<h1>Loading.....</h1>)
   }
-
 }
 
 const mapStateToProps = null
 
-const mapDispatchToProps= (dispatch) => {
+const mapDispatchToProps= (dispatch,ownProps) => {
   return {
-    getShipData (){
-      dispatch(fetchShips())
-    },
     handleOnChange (event){
-      const xy = event.target.value
-      const name = event.target.dataset.name
-      const size = +event.target.dataset.size
-      const direction = event.target.dataset.direction
-      //console.log(xy,name,size,direction,rows.indexOf(xy[0]))
-      const num = rows.indexOf(xy[0])
-      //    dispatch(setShip(rows.slice(num,size+num).map((x)=>{return `${x}${xy[1]}`})))
-
+      const ship =  { orientation: event.target.dataset.direction,
+        coordinate: event.target.value,
+        shipId: +event.target.dataset.shipid,
+        gameId: +ownProps.player.gameId,
+        playerId: +ownProps.player.id
+      }
+      dispatch(addChangeShip(ship))
+    },
+    handleOnChangeOrient (event){
+      const ship =  {
+        orientation: event.target.value,
+        coordinate: event.target.dataset.coordinates,
+        shipId: +event.target.dataset.shipid,
+        gameId: +ownProps.player.gameId,
+        playerId: +ownProps.player.id
+      }
+      dispatch(addChangeShip(ship))
     }
   }
 }

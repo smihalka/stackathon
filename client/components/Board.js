@@ -26,10 +26,13 @@ function Board (props) {
                 let bgClass = null
                 let tgClass = null
                 //wait your turn
-                let click = ()=>{props.handleTurn()}
-                ///whose turn
-                if(props.localplayer.id === props.game.turnId){
-                  click = ()=>{props.handleShot(`${row}${col}`)}
+                let click = null
+                if(props.game.status === 1){
+                  ///whose turn
+                  click = ()=>{props.handleTurn()}
+                  if(props.localplayer.id === props.game.turnId){
+                    click = ()=>{props.handleShot(`${row}${col}`)}
+                  }
                 }
                 //make colors
                 let hit = false

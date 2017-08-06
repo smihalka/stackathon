@@ -21,3 +21,16 @@ router.get('/game/:gameId', (req, res, next) => {
     .then(players => res.json(players))
     .catch(next)
 })
+
+
+router.put('/game/', (req, res, next) => {
+  Player.update({status: req.body.status},
+    {
+      where: {
+        gameId: req.body.gameId,
+        id: req.body.id
+      }
+    })
+    .then(players => res.json(players))
+    .catch(next)
+})
