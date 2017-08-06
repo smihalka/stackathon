@@ -83,10 +83,6 @@ class Battle extends Component {
 
 const mapStateToProps = (state) => {
 
-  // socket.emit('state', state)
-  // socket.on('state', function(state) {
-  //
-//  })
 
   const opponent = state.gameplayers.find((player)=>{
     return player.id !== state.localplayer.id})

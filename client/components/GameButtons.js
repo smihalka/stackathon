@@ -27,7 +27,7 @@ export const setBoard = (ships,player)=>{
 }
 
 export const playBoard = (opponent, local, game)=>{
-  if(local.status === 1 && opponent.status === 1 && game.status !== 1){
+  if(local.status === 1 && opponent.status === 1 && game.status === 0){
     return (
       <div>
         <Button

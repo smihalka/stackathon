@@ -3,8 +3,8 @@ import Ships from './Ships'
 import ScoreBoard from './Scoreboard'
 import {setBoard, playBoard} from './GameButtons'
 import { connect } from 'react-redux'
-import { updateStatusPlayer, fetchPlayer, updateGameTurn} from '../store'
-
+import { updateStatusPlayer, fetchPlayer, updateGameTurn, fetchGame} from '../store'
+import socket from '../socket'
 
 function BattleBar (props) {
 
@@ -64,7 +64,7 @@ const mapDispatchToProps= (dispatch,ownProps) => {
     },
     handleSubmitGameStatus (event){
       event.preventDefault()
-      dispatch(updateGameTurn(ownProps.localplayer.gameId, { status: 1}))
+      dispatch(updateGameTurn(ownProps.game.id, { status: 1}))
     }
   }
 
