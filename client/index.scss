@@ -26,32 +26,9 @@ html, body {
   float:right;
 }
 
-.hit {
-  border-color: red;
-  background-color: red;
-
-}
-
-.miss {
-  border-color: white;
-  background-color: white;
-}
-
-
-.fired {
-
-  border: 1px dashed red;
-  background-color: green;
-
-}
-
-.ship {
-  border-color: black;
-  background-color: green;
-}
 
 body {
-  font-family: sans-serif;
+  font-family: Courier;
 
   a {
     text-decoration: none;
@@ -70,4 +47,476 @@ body {
     margin: 1em;
     display: inline-block;
   }
+}
+
+
+.row {
+  background-color: rgb(149, 149, 149);
+  position: absolute;
+  left: 536px;
+  top: 420px;
+  width: 1900px;
+  height: 5px;
+  z-index: 26;
+}
+.field {
+  border-width: 2px;
+  border-color: rgb(7, 34, 99);
+  border-style: solid;
+  background-color: rgb(250, 251, 251);
+  width: 100%;
+  height: 600px;
+  z-index: 25;
+}
+.guide {
+  border-width: 2px;
+  border-color: rgb(149, 149, 149);
+  border-style: solid;
+  border-radius: 20px;
+  background-color: rgb(250, 251, 251);
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+ .guide td {
+  background-color: #99ccff;
+  width: 55px;
+  height: 55px;
+  line-height: 1;
+}
+
+th {
+  font-size: 30px;
+  text-align: center;
+  font-family: "Courier";
+  color: rgb(3, 3, 3);
+  font-weight: bold;
+  line-height: 1;
+  width: 50px;
+  height: 50px;
+}
+
+table {
+  width: 100%;
+
+}
+
+
+.pinEmpty {
+  border-width: 1px;
+  border-color: rgb(7, 34, 99);
+  border-style: solid;
+  border-radius: 50%;
+  background-color: rgb(97, 171, 239);
+  width: 20px;
+  height: 20px;
+}
+
+.pinHit {
+  border-style: solid;
+  border-width: 4px;
+  border-color: rgb(5, 5, 5);
+  border-radius: 50%;
+  background-color: red;
+  width: 40px;
+  height: 40px;
+}
+
+
+.pinHitShip {
+  border-style: solid;
+  border-width: 4px;
+  border-color: rgb(5, 5, 5);
+  border-radius: 50%;
+  background-color: red;
+  width: 40px;
+  height: 40px;
+}
+
+
+.pinMiss {
+  border-style: solid;
+  border-width: 4px;
+  border-color: rgb(5, 5, 5);
+  border-radius: 50%;
+  background-color: rgb(250, 251, 251);
+  width: 40px;
+  height: 40px;
+}
+
+
+
+
+// I tried but didnt want to spend the time on scss right now - but will fix later for sure so I learn it
+//@for $i from 0 through 4
+//   .ship1V#{$i}
+//     background-image: url('/images/craft#{$i}.png');
+//     background-size: 60px 60px
+//     width: 100%
+//     height: 100%
+//     background-repeat: no-repeat;
+//     -webkit-transform: rotate(90deg)
+//       -moz-transform: rotate(90deg)
+//       -o-transform: rotate(90deg)
+//       -ms-transform: rotate(90deg)
+//       transform: rotate(90deg)
+
+
+.ship1V0 {
+  background-image: url("/images/craft0.png");
+  background-size: 60px 60px;
+  width: 100%;
+  height: 100%;
+  background-repeat: no-repeat;
+  -webkit-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    -o-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    transform: rotate(90deg);
+}
+
+.ship1V1 {
+  background-image: url("/images/craft1.png");
+  width: 100%;
+  height: 100%;
+  background-repeat: no-repeat;
+  background-size: 60px 60px;
+  -webkit-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    -o-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    transform: rotate(90deg);
+}
+
+.ship1V2 {
+  background-image: url("/images/craft2.png");
+  width: 100%;
+  height: 100%;
+  background-repeat: no-repeat;
+  background-size: 60px 60px;
+  -webkit-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    -o-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    transform: rotate(90deg);
+}
+.ship1V3 {
+  background-image: url("/images/craft3.png");
+  width: 100%;
+  height: 100%;
+  background-repeat: no-repeat;
+  background-size: 60px 60px;
+  -webkit-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    -o-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    transform: rotate(90deg);
+}
+.ship1V4 {
+  background-image: url("/images/craft4.png");
+  width: 100%;
+  height: 100%;
+  background-repeat: no-repeat;
+  background-size: 50px 50px;
+  -webkit-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    -o-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    transform: rotate(90deg);
+}
+
+
+
+.ship1H0 {
+  background-image: url("/images/craft0.png");
+  background-size: 60px 60px;
+  width: 100%;
+  height: 100%;
+  background-repeat: no-repeat;
+}
+
+.ship1H1 {
+  background-image: url("/images/craft1.png");
+  width: 100%;
+  height: 100%;
+  background-repeat: no-repeat;
+  background-size: 60px 60px;
+}
+.ship1H2 {
+  background-image: url("/images/craft2.png");
+  width: 100%;
+  height: 100%;
+  background-repeat: no-repeat;
+  background-size: 60px 60px;
+}
+.ship1H3 {
+  background-image: url("/images/craft3.png");
+  width: 100%;
+  height: 100%;
+  background-repeat: no-repeat;
+  background-size: 60px 60px;
+}
+.ship1H4 {
+  background-image: url("/images/craft4.png");
+  width: 100%;
+  height: 100%;
+  background-repeat: no-repeat;
+  background-size: 50px 50px;
+}
+
+
+.ship2V0 {
+  background-image: url("/images/bat0.png");
+  background-size: 60px 60px;
+  width: 100%;
+  height: 100%;
+  background-repeat: no-repeat;
+  -webkit-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    -o-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    transform: rotate(90deg);
+}
+
+.ship2V1 {
+  background-image: url("/images/bat1.png");
+  width: 100%;
+  height: 100%;
+  background-repeat: no-repeat;
+  background-size: 60px 60px;
+  -webkit-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    -o-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    transform: rotate(90deg);
+}
+
+.ship2V2 {
+  background-image: url("/images/bat2.png");
+  width: 100%;
+  height: 100%;
+  background-repeat: no-repeat;
+  background-size: 60px 60px;
+  -webkit-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    -o-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    transform: rotate(90deg);
+}
+.ship2V3 {
+  background-image: url("/images/bat3.png");
+  width: 100%;
+  height: 100%;
+  background-repeat: no-repeat;
+  background-size: 60px 60px;
+  -webkit-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    -o-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    transform: rotate(90deg);
+}
+
+.ship2H0 {
+  background-image: url("/images/bat0.png");
+  background-size: 60px 60px;
+  width: 100%;
+  height: 100%;
+  background-repeat: no-repeat;
+}
+
+.ship2H1 {
+  background-image: url("/images/bat1.png");
+  width: 100%;
+  height: 100%;
+  background-repeat: no-repeat;
+  background-size: 60px 60px;
+}
+
+.ship2H2 {
+  background-image: url("/images/bat2.png");
+  width: 100%;
+  height: 100%;
+  background-repeat: no-repeat;
+  background-size: 60px 60px;
+}
+.ship2H3 {
+  background-image: url("/images/bat3.png");
+  width: 100%;
+  height: 100%;
+  background-repeat: no-repeat;
+  background-size: 60px 60px;
+}
+
+.ship3V0 {
+  background-image: url("/images/cruiser0.png");
+  background-size: 60px 60px;
+  width: 100%;
+  height: 100%;
+  background-repeat: no-repeat;
+  -webkit-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    -o-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    transform: rotate(90deg);
+}
+
+.ship3V1 {
+  background-image: url("/images/cruiser1.png");
+  width: 100%;
+  height: 100%;
+  background-repeat: no-repeat;
+  background-size: 60px 60px;
+  -webkit-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    -o-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    transform: rotate(90deg);
+}
+
+.ship3V2 {
+  background-image: url("/images/cruiser2.png");
+  width: 100%;
+  height: 100%;
+  background-repeat: no-repeat;
+  background-size: 60px 60px;
+  -webkit-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    -o-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    transform: rotate(90deg);
+}
+
+
+.ship3H0 {
+  background-image: url("/images/cruiser0.png");
+  background-size: 60px 60px;
+  width: 100%;
+  height: 100%;
+  background-repeat: no-repeat;
+}
+
+.ship3H1 {
+  background-image: url("/images/cruiser1.png");
+  width: 100%;
+  height: 100%;
+  background-repeat: no-repeat;
+  background-size: 60px 60px;
+}
+
+.ship3H2 {
+  background-image: url("/images/cruiser2.png");
+  width: 100%;
+  height: 100%;
+  background-repeat: no-repeat;
+  background-size: 60px 60px;
+}
+
+
+.ship4V0 {
+  background-image: url("/images/sub0.png");
+  background-size: 60px 60px;
+  width: 100%;
+  height: 100%;
+  background-repeat: no-repeat;
+  -webkit-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    -o-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    transform: rotate(90deg);
+}
+
+.ship4V1 {
+  background-image: url("/images/sub1.png");
+  width: 100%;
+  height: 100%;
+  background-repeat: no-repeat;
+  background-size: 60px 60px;
+  -webkit-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    -o-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    transform: rotate(90deg);
+}
+
+.ship4V2 {
+  background-image: url("/images/sub2.png");
+  width: 100%;
+  height: 100%;
+  background-repeat: no-repeat;
+  background-size: 60px 60px;
+  -webkit-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    -o-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    transform: rotate(90deg);
+}
+
+
+.ship4H0 {
+  background-image: url("/images/sub0.png");
+  background-size: 60px 60px;
+  width: 100%;
+  height: 100%;
+  background-repeat: no-repeat;
+}
+
+.ship4H1 {
+  background-image: url("/images/sub1.png");
+  width: 100%;
+  height: 100%;
+  background-repeat: no-repeat;
+  background-size: 60px 60px;
+}
+
+.ship4H2 {
+  background-image: url("/images/sub2.png");
+  width: 100%;
+  height: 100%;
+  background-repeat: no-repeat;
+  background-size: 60px 60px;
+}
+
+
+
+.ship5V0 {
+  background-image: url("/images/destroy0.png");
+  background-size: 60px 60px;
+  width: 100%;
+  height: 100%;
+  background-repeat: no-repeat;
+  -webkit-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    -o-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    transform: rotate(90deg);
+}
+
+.ship5V1 {
+  background-image: url("/images/destroy1.png");
+  width: 100%;
+  height: 100%;
+  background-repeat: no-repeat;
+  background-size: 60px 60px;
+  -webkit-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    -o-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    transform: rotate(90deg);
+}
+
+.ship5H0 {
+  background-image: url("/images/destroy0.png");
+  background-size: 60px 60px;
+  width: 100%;
+  height: 100%;
+  background-repeat: no-repeat;
+}
+
+.ship5H1 {
+  background-image: url("/images/destroy1.png");
+  width: 100%;
+  height: 100%;
+  background-repeat: no-repeat;
+  background-size: 60px 60px;
 }

@@ -29,15 +29,14 @@ const Main = (props) => {
             ? <div>
               {/* The navbar will show these links after you log in */}
               <Nav>
-                <LinkContainer to="/otherpage">
-                  <NavItem eventKey={1}>Otherpage</NavItem>
+                <LinkContainer to="/battle">
+                  <NavItem eventKey={1}>Battle</NavItem>
                 </LinkContainer>
+
                 <LinkContainer to="/#">
                   <NavItem onClick={handleClick} eventKey={2}>Logout</NavItem>
                 </LinkContainer>
-                <LinkContainer to="/battle">
-                  <NavItem eventKey={3}>Battle</NavItem>
-                </LinkContainer>
+
               </Nav>
             </div>
             : <div>

@@ -15,10 +15,13 @@ export default function ScoreBoard (props) {
   const {hit, miss} = hitMiss(props.playerId,props.playerShips,props.shots)
 
   return (
-    <Table>
-      <thead><tr><th colSpan='3'>{props.title}</th></tr></thead>
-      <thead><tr><th>Hits</th><th>Misses</th><th>Shots</th></tr></thead>
-      <tbody><tr><td>{hit}</td><td>{miss}</td><td>{shots}</td></tr></tbody>
-    </Table>
+    <div>
+      <div></div>
+      <Table>
+        <thead><tr><th colSpan='3'>{props.title}</th></tr></thead>
+        <thead><tr><th>Hits</th><th>Misses</th><th>Shots</th></tr></thead>
+        <tbody><tr><td>{hit}</td><td>{miss}</td><td>{shots}</td></tr></tbody>
+      </Table>
+    </div>
   )
 }

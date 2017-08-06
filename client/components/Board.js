@@ -8,83 +8,86 @@ import socket from '../socket'
 function Board (props) {
 
   return (
-    <Table>
-      <thead>
-        <tr colSpan='11'><th colSpan='11'>{props.title}</th></tr>
-      </thead>
-      <tbody>
-        <tr><th>X / Y</th>
-          {cols.map((col)=>{
-            return (<th key={`${col}`}>{col}</th>)
-          })}
-        </tr>
-        {rows.map((row)=>{
-          return (
-            <tr key={row}><th>{row}</th>
+    <div><h1>{props.title}</h1>
+      <div className='guide'>
+
+        <table>
+          <tbody>
+            <tr><th></th>
               {cols.map((col)=>{
-
-                let bgClass = null
-                let tgClass = null
-                //wait your turn
-                let click = null
-                if(props.game.status === 1){
-                  ///whose turn
-                  click = ()=>{props.handleTurn()}
-                  if(props.localplayer.id === props.game.turnId){
-                    click = ()=>{props.handleShot(`${row}${col}`)}
-                  }
-                }
-                //make colors
-                let hit = false
-                //show hit ship
-                props.gameShipsOpponentPlayer.forEach((gameShip)=>{
-                  gameShip.coordinates.forEach((coord)=>{
-                    if(coord === `${row}${col}`){
-                      hit = true
-                    }
-                  })
-                })
-                //show ships
-                props.gameShipsLocalPlayer.forEach((gameShip)=>{
-                  gameShip.coordinates.forEach((coord)=>{
-                    if(coord === `${row}${col}`){
-                      bgClass = 'ship'
-                    }
-                  })
-                })
-
-                props.shots.forEach((shot)=>{
-                  if(`${row}${col}` === shot.coordinate){
-                    if(props.board === 'tg' && props.localplayer.id === shot.playerId){
-                      if(hit){
-                        tgClass = 'hit'
-                      }else{
-                        tgClass = 'miss'
-                      }
-
-                    }
-                    if(props.board === 'bg' && props.localplayer.id !== shot.playerId){
-                      if(bgClass === 'ship'){
-                        bgClass = 'hit'
-                      }else{
-                        bgClass = 'miss'
-                      }
-
-                    }
-                  }
-                })
-
-                if(props.board === 'bg'){
-                  return (<td className={bgClass} key={`${row}${col}`}></td>)
-                }else{
-                  return (<td className={tgClass} onClick={click} key={`${row}${col}`}></td>)
-                }
+                return (<th key={`${col}`}>{col}</th>)
               })}
             </tr>
-          )
-        })}
-      </tbody>
-    </Table>
+            {rows.map((row)=>{
+              return (
+                <tr key={row}><th>{row}</th>
+                  {cols.map((col)=>{
+                    let hitShip = null
+                    let bgClass = 'pinEmpty'
+                    let tgClass = 'pinEmpty'
+                    //wait your turn
+                    let click = null
+                    if(props.game.status === 1){
+                      ///whose turn
+                      click = ()=>{props.handleTurn()}
+                      if(props.localplayer.id === props.game.turnId){
+                        click = ()=>{props.handleShot(`${row}${col}`)}
+                      }
+                    }
+                    //make colors
+                    let hit = false
+                    //show hit ship
+                    props.gameShipsOpponentPlayer.forEach((gameShip)=>{
+                      gameShip.coordinates.forEach((coord)=>{
+                        if(coord === `${row}${col}`){
+                          hit = true
+                        }
+                      })
+                    })
+                    //show ships
+                    props.gameShipsLocalPlayer.forEach((gameShip)=>{
+                      gameShip.coordinates.forEach((coord, i)=>{
+                        if(coord === `${row}${col}`){
+                          bgClass = `ship${gameShip.shipId}${gameShip.orientation[0].toUpperCase()}${i}`
+                        }
+                      })
+                    })
+
+                    props.shots.forEach((shot)=>{
+                      if(`${row}${col}` === shot.coordinate){
+                        if(props.board === 'tg' && props.localplayer.id === shot.playerId){
+                          if(hit){
+                            tgClass = 'pinHit'
+                          }else{
+                            tgClass = 'pinMiss'
+                          }
+
+                        }
+                        if(props.board === 'bg' && props.localplayer.id !== shot.playerId){
+                          if(bgClass !== 'pinEmpty'){
+                            bgClass = `${bgClass}`
+                            hitShip = <div className='pinHitShip'></div>
+                          }else{
+                            bgClass = 'pinMiss'
+                          }
+
+                        }
+                      }
+                    })
+
+                    if(props.board === 'bg'){
+                      return (<td id='bg'  key={`${row}${col}`}><div className={bgClass}>{hitShip}</div></td>)
+                    }else{
+                      return (<td id='tg' onClick={click} key={`${row}${col}`}><div className={tgClass}></div></td>)
+                    }
+                  })}
+                </tr>
+              )
+            })}
+          </tbody>
+        </table>
+      </div>
+    </div>
   )
 }
 

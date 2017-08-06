@@ -23,11 +23,12 @@ class Battle extends Component {
       const gameShipsLocalPlayer = shipCoordinates(this.props.gameships,this.props.ships,this.props.localplayer)
 
       const gameShipsOpponentPlayer = shipCoordinates(this.props.gameships,this.props.ships,this.props.opponentplayer)
+    
 
       return (
         <div>
-          <h1>{this.props.user.email}</h1>
-          <h4>{this.props.localplayer.id}</h4>
+          <h1><b>{this.props.user.email}</b></h1>
+
           <div className='board'>
             <Board
               title='Target Grid'

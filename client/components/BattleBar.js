@@ -1,6 +1,7 @@
 import React  from 'react'
 import Ships from './Ships'
 import ScoreBoard from './Scoreboard'
+import TitleBar from './TitleBar'
 import {setBoard, playBoard} from './GameButtons'
 import { connect } from 'react-redux'
 import { updateStatusPlayer, fetchPlayer, updateGameTurn, fetchGame} from '../store'
@@ -10,6 +11,10 @@ function BattleBar (props) {
 
   if(props.opponentplayer){
     return (<div id='battlebar'>
+      <TitleBar
+        player={props.localplayer}
+        game={props.game}
+      />
       <ScoreBoard
         playerShips={props.gameShipsLocalPlayer}
         title={`Opponent Id ${props.opponentplayer.id}`}
