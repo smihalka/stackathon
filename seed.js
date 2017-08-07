@@ -1,16 +1,30 @@
 const db = require('./server/db/index')
 let Promise = require('bluebird')
 
-const _users = [
+//const _users =
+// [
+//   {
+//     "email" : "shayne@mihalka.com",
+//     "googleId" : "104277003462992516974"
+//   },
+//   {
+//     "email" : "vtapunk@gmail.com",
+//     "googleId" : "111873175279766000759"
+//   }
+// ]
+
+const _users =  [
   {
-    "email" : "shayne@mihalka.com",
-    "googleId" : "104277003462992516974"
+    "password" : "12345",
+    "email" : "reggie@battle.com"
+
   },
   {
-    "email" : "vtapunk@gmail.com",
-    "googleId" : "111873175279766000759"
+    "password" : "12345",
+    "email" : "cody@battle.com"
   }
 ]
+
 
 const _shots = [
   {
