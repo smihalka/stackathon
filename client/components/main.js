@@ -21,7 +21,7 @@ const Main = (props) => {
       <Navbar>
         <Navbar.Header>
           <Navbar.Brand>
-            <Link to="/">battleoftheships</Link>
+            <Link to="/homeview">battleoftheships</Link>
           </Navbar.Brand>
         </Navbar.Header>
         {

@@ -6,4 +6,5 @@
 export {default as Main} from './main'
 export {default as UserHome} from './user-home'
 export {default as Battle} from './Battle'
+export {default as HomeView} from './HomeView'
 export {Login, Signup} from './auth-form'
