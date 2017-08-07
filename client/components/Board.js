@@ -1,14 +1,15 @@
 import React  from 'react'
-import { Table } from 'react-bootstrap'
 import { cols, rows } from './Coordinates'
 import { connect } from 'react-redux'
+import { FadeInMaker,ZoomInMaker } from './Animator'
 import { fireShot, updateGameTurn} from '../store'
 import socket from '../socket'
 
 function Board (props) {
 
+
   return (
-    <div><h1>{props.title}</h1>
+    <div><h3>{props.title}</h3>
       <div className='guide'>
 
         <table>
@@ -22,9 +23,12 @@ function Board (props) {
               return (
                 <tr key={row}><th>{row}</th>
                   {cols.map((col)=>{
+
                     let hitShip = null
                     let bgClass = 'pinEmpty'
                     let tgClass = 'pinEmpty'
+                    let tgDiv = <div className={tgClass}></div>
+                    let bgDiv = <div className={bgClass}></div>
                     //wait your turn
                     let click = null
                     if(props.game.status === 1){
@@ -53,20 +57,41 @@ function Board (props) {
                       })
                     })
 
-                    props.shots.forEach((shot)=>{
+
+
+                    props.shots.forEach((shot, i)=>{
                       if(`${row}${col}` === shot.coordinate){
                         if(props.board === 'tg' && props.localplayer.id === shot.playerId){
+                          // /if(props.shots.length-1 === i) {console.log(props.game.turn,shot.coordinate)}
                           if(hit){
                             tgClass = 'pinHit'
+                            if(props.lastShot.coordinate === shot.coordinate){
+                              tgDiv = <ZoomInMaker animate={tgClass} type='flash'/>
+                            }else{
+                              tgDiv = <div className={tgClass}></div>
+                            }
+
                           }else{
                             tgClass = 'pinMiss'
+                            if(props.lastShot.coordinate === shot.coordinate){
+                              tgDiv = <FadeInMaker animate={tgClass} type='flash'/>
+                            }else{
+                              tgDiv = <div className={tgClass}></div>
+                            }
                           }
 
                         }
+
+
                         if(props.board === 'bg' && props.localplayer.id !== shot.playerId){
                           if(bgClass !== 'pinEmpty'){
+
                             bgClass = `${bgClass}`
                             hitShip = <div className='pinHitShip'></div>
+                            bgDiv = <div className={bgClass}>{hitShip}</div>
+
+
+
                           }else{
                             bgClass = 'pinMiss'
                           }
@@ -78,7 +103,7 @@ function Board (props) {
                     if(props.board === 'bg'){
                       return (<td id='bg'  key={`${row}${col}`}><div className={bgClass}>{hitShip}</div></td>)
                     }else{
-                      return (<td id='tg' onClick={click} key={`${row}${col}`}><div className={tgClass}></div></td>)
+                      return (<td id='tg' onClick={click} key={`${row}${col}`}>{tgDiv}</td>)
                     }
                   })}
                 </tr>

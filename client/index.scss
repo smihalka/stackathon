@@ -14,16 +14,16 @@ html, body {
 }
 
 .board {
+  padding-top: 30px;
+  padding-right: 30px;
   width:70%;
   float:left;
 }
 .battlebar {
+  padding-top: 100px;
   width:30%;
   float:left;
-}
-#battlebar {
-  width:80%;
-  float:right;
+  overflow: hidden;
 }
 
 
@@ -69,14 +69,81 @@ body {
   z-index: 25;
 }
 .guide {
+  padding-top: 20px;
   border-width: 2px;
   border-color: rgb(149, 149, 149);
   border-style: solid;
   border-radius: 20px;
-  background-color: rgb(250, 251, 251);
+  background-color: rgb(222, 221, 221);
   position: relative;
   width: 100%;
   overflow: hidden;
+}
+
+.scoreBoard {
+  border-width: 2px;
+  border-color: rgb(149, 149, 149);
+  border-style: solid;
+  border-radius: 20px;
+  background-color: rgb(222, 221, 221);
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+.ships {
+  top: 10px;
+  border-width: 2px;
+  border-color: rgb(149, 149, 149);
+  border-style: solid;
+  border-radius: 20px;
+  background-color: rgb(222, 221, 221);
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+.ships th {
+  padding-right: 6px;
+  padding-bottom: 3px;
+  padding-top: 3px;
+  text-align: center;
+  font-family: "Courier";
+  font-size: 16px;
+  background-color: white;
+  border-bottom: 2px solid rgb(222, 221, 221);
+}
+
+.ships td {
+  padding-right: 6px;
+  padding-bottom: 3px;
+  padding-top: 3px;
+  text-align: center;
+  font-family: "Courier";
+  font-size: 18px;
+
+  border-bottom: 2px solid rgb(222, 221, 221);
+}
+
+.scoreBoard th {
+  text-align: center;
+  font-family: "Courier";
+  font-size: 20px;
+  background-color: white;
+  border-bottom: 2px solid rgb(222, 221, 221);
+}
+
+
+
+.hits {
+  color: red;
+}
+
+.scoreBoard td {
+  text-align: center;
+  font-family: "Courier";
+  font-size: 26px;
+  background-color: white;
+  border-bottom: 2px solid rgb(222, 221, 221);
 }
 
  .guide td {
@@ -86,7 +153,7 @@ body {
   line-height: 1;
 }
 
-th {
+.guide th {
   font-size: 30px;
   text-align: center;
   font-family: "Courier";
@@ -519,4 +586,28 @@ table {
   height: 100%;
   background-repeat: no-repeat;
   background-size: 60px 60px;
+}
+
+
+.topBar {
+  border-bottom: 1px solid grey;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+.nameBar {
+  top: 50px;
+  float:right;
+  position: relative;
+  height: 2em;
+}
+
+.turnBar {
+  float:left;
+    position: relative;
+}
+
+.clearBoth {
+  clear:both;
 }

@@ -15,11 +15,6 @@ export const setBoard = (ships,player)=>{
       )
   }else{
     return (<div>
-      <Button
-        disabled
-      bsSize='large'>
-        Set Board
-      </Button>
     </div>
       )
   }
@@ -27,22 +22,19 @@ export const setBoard = (ships,player)=>{
 }
 
 export const playBoard = (opponent, local, game)=>{
-  if(local.status === 1 && opponent.status === 1 && game.status === 0){
+  if(game.status === 1){
+    return (
+      <div>
+
+      </div>
+    )
+  }else{
     return (
       <div>
         <Button
           type='submit'
           bsSize='large'
         >
-          PLAY
-        </Button>
-      </div>
-    )
-  }else{
-    return (
-      <div>
-        <Button disabled
-        bsSize='large'>
           PLAY
         </Button>
       </div>

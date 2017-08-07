@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import Board from './Board.js'
 import BattleBar from './BattleBar.js'
+import TurnBar from './TurnBar.js'
 import {connect} from 'react-redux'
 import {fetchShips, fetchShots, fetchGameShips, me, fetchPlayer, fetchGame, fetchGamePlayers} from '../store'
 import socket from '../socket'
@@ -17,17 +18,32 @@ class Battle extends Component {
 
   }
 
-
   render(){
     if(this.props.gameships){
       const gameShipsLocalPlayer = shipCoordinates(this.props.gameships,this.props.ships,this.props.localplayer)
 
       const gameShipsOpponentPlayer = shipCoordinates(this.props.gameships,this.props.ships,this.props.opponentplayer)
-    
+      let lastShot
+      if(this.props.shots){
+        lastShot = this.props.shots[this.props.shots.length-1]
+      }
+
 
       return (
         <div>
-          <h1><b>{this.props.user.email}</b></h1>
+          <div className='topBar'>
+            <div className='turnBar'>
+              <TurnBar
+                player={this.props.localplayer}
+                opponentplayer={this.props.opponentplayer}
+                game={this.props.game}
+              />
+            </div>
+            <div className='nameBar'>
+              <b>logged in as: {this.props.user.email}</b>
+            </div>
+
+          </div>
 
           <div className='board'>
             <Board
@@ -35,6 +51,7 @@ class Battle extends Component {
               board='tg'
               user={this.props.user}
               game={this.props.game}
+              lastShot={lastShot}
               localplayer={this.props.localplayer}
               opponentplayer={this.props.opponentplayer}
               gameships={this.props.gameships}
@@ -51,6 +68,7 @@ class Battle extends Component {
               user={this.props.user}
               game={this.props.game}
               localplayer={this.props.localplayer}
+              lastShot={lastShot}
               opponentplayer={this.props.opponentplayer}
               gameships={this.props.gameships}
               shots={this.props.shots}
@@ -67,6 +85,7 @@ class Battle extends Component {
               shots={this.props.shots}
               gameplayers={this.props.gameplayers}
               ships={this.props.ships}
+              lastShot={lastShot}
               gameShipsOpponentPlayer={gameShipsOpponentPlayer}
               gameShipsLocalPlayer={gameShipsLocalPlayer}
               localplayer={this.props.localplayer}

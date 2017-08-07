@@ -1,7 +1,7 @@
 import React  from 'react'
 import Ships from './Ships'
 import ScoreBoard from './Scoreboard'
-import TitleBar from './TitleBar'
+
 import {setBoard, playBoard} from './GameButtons'
 import { connect } from 'react-redux'
 import { updateStatusPlayer, fetchPlayer, updateGameTurn, fetchGame} from '../store'
@@ -10,13 +10,12 @@ import socket from '../socket'
 function BattleBar (props) {
 
   if(props.opponentplayer){
-    return (<div id='battlebar'>
-      <TitleBar
-        player={props.localplayer}
-        game={props.game}
-      />
+
+    return (<div>
+
       <ScoreBoard
         playerShips={props.gameShipsLocalPlayer}
+        lastShot={props.lastShot}
         title={`Opponent Id ${props.opponentplayer.id}`}
         shots={props.shots}
         playerId={props.opponentplayer.id}
@@ -24,6 +23,7 @@ function BattleBar (props) {
       <hr/>
       <ScoreBoard
         playerShips={props.gameShipsOpponentPlayer}
+        lastShot={props.lastShot}
         title={`Your Id ${props.localplayer.id}`}
         shots={props.shots}
         playerId={props.localplayer.id}
@@ -63,9 +63,6 @@ const mapDispatchToProps= (dispatch,ownProps) => {
         .then(()=>{
           dispatch(fetchPlayer(ownProps.localplayer.userId))
         })
-
-
-      console.log(ownProps)
     },
     handleSubmitGameStatus (event){
       event.preventDefault()
