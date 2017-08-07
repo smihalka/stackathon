@@ -54,6 +54,7 @@ const mapDispatchToProps= (dispatch,ownProps) => {
   return {
     handleSubmitBoardStatus (event){
       event.preventDefault()
+      socket.emit('message', 'Player Status Change')
       const changeStatus = {
         id: ownProps.localplayer.id,
         gameId: ownProps.localplayer.gameId,
@@ -66,6 +67,7 @@ const mapDispatchToProps= (dispatch,ownProps) => {
     },
     handleSubmitGameStatus (event){
       event.preventDefault()
+      socket.emit('message', 'Game Status Change')
       dispatch(updateGameTurn(ownProps.game.id, { status: 1}))
     }
   }
