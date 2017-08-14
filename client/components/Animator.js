@@ -2,9 +2,7 @@ import React  from 'react'
 import styled, { keyframes } from 'styled-components'
 import { flash, shake, wobble, fadeIn, zoomIn } from 'react-animations'
 
-
 export function FlashMaker (props) {
-
   const animation = keyframes`${flash}`
   const AnimationDiv = styled.div`
     animation: 1s ${animation};
@@ -17,7 +15,6 @@ export function FlashMaker (props) {
     </div>
   )
 }
-
 
 export function ShakeMaker (props) {
 
@@ -34,7 +31,6 @@ export function ShakeMaker (props) {
   )
 
 }
-
 
 export function WobbleMaker (props) {
 
